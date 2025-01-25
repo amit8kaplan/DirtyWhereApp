@@ -22,21 +22,22 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun MainHomeScreen(boxTitles: List<String>, modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier
+        modifier = modifier // Apply the passed modifier to respect Scaffold padding
             .fillMaxWidth()
             .fillMaxHeight()
-            .padding(16.dp)
+            .padding(4.dp)
     ) {
         repeat(2) { row ->
             Row(
                 modifier = Modifier
-                    .weight(1f) // Use weight(1f) for each row
-                    .padding(8.dp)
+                    .weight(1f) // Divide the space evenly among rows
+                    .padding(4.dp)
             ) {
                 repeat(2) { column ->
                     Box(
                         modifier = Modifier
-                            .weight(1f) // Use weight(1f) for each box
+                            .padding(4.dp)
+                            .weight(1f) // Divide the space evenly among boxes
                             .fillMaxHeight()
                             .border(1.dp, Color.Black)
                             .background(

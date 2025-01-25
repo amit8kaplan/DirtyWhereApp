@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.project.dirtywhrere.ui.components.MainHomeScreen
 import com.project.dirtywhrere.ui.components.TopBar
 import com.project.dirtywhrere.viewmodel.HomeViewModel
@@ -13,16 +14,18 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
-    Scaffold ( topBar ={
-        TopBar(
-            title = "Dirty Where"
-        )
-    })
-    {innerPadding ->
+    Scaffold(
+        topBar = {
+            TopBar(
+                title = "Dirty Where"
+            )
+        }
+    ) { innerPadding ->
         MainHomeScreen(
             boxTitles = viewModel.boxTitles,
-            modifier = Modifier.padding(innerPadding)
+            modifier = Modifier
+                .padding(innerPadding) // Apply the inner padding to avoid overlap
+                .padding(8.dp) // Additional padding for aesthetics
         )
-
     }
 }
