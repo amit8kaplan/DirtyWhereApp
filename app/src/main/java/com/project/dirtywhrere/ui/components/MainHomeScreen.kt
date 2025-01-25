@@ -10,6 +10,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,7 +25,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.project.dirtywhrere.classes.GateData
 import com.project.dirtywhrere.R
-
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -66,10 +68,12 @@ fun MainHomeScreen(
                                 }),
                         ){
                             Image(
-                                painter = painterResource(if (gatesData[index].statusGate == true) R.drawable.green_light else R.drawable.policeman),
-                                contentDescription = "Image",
+                                painter = painterResource(
+                                    id = if (gatesData[index].statusGate == true) R.drawable.green_light else R.drawable.policeman
+                                ),
+                                contentDescription = "none",
                                 modifier = Modifier.fillMaxSize(),
-                                contentScale = ContentScale.Crop
+                                contentScale = ContentScale.Fit
                             )
                         }
 
@@ -82,7 +86,11 @@ fun MainHomeScreen(
                                 .clickable { onAddBtnClick(index) }, // Button click
                             contentAlignment = Alignment.Center
                         ) {
-                            Text("+", color = Color.Black, fontSize = 16.sp)
+                            Icon(
+                                imageVector = Icons.Default.Add,
+                                contentDescription = "Add",
+                                tint = Color.Black
+                            )
                         }
                         Box(
                             modifier = Modifier
@@ -93,7 +101,7 @@ fun MainHomeScreen(
                                 .clickable { onBoxClick(index) } // Same click as photo
                         ) {
                             Text(
-                                text = "Last update: 01/25/2025", // Example data
+                                text = "the Info is Brand New!", // Example data
                                 color = Color.White,
                                 fontSize = 12.sp,
                                 textAlign = TextAlign.Center,
