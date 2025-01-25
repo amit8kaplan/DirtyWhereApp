@@ -1,31 +1,39 @@
-package com.project.dirtywhrere.viewmodel
+package com.project.dirtywhrere.classes
 
-import androidx.compose.runtime.mutableStateListOf
-import androidx.lifecycle.ViewModel
-import com.project.dirtywhrere.classes.GateData
+import java.util.Date
 
-class HomeViewModel : ViewModel() {
-    // List of box data (you can replace this with dynamic data later)
-    var gatesData = mutableStateListOf(
+class GateData {
+    var name: String? = null
+    var statusGate: Boolean? = null
+    var statusDirty: Boolean? = null
+    var lastUpdated: Date? = null
+}
+
+fun gates(): List<GateData> {
+    return listOf(
         GateData().apply {
             name = "Gate 1"
             statusGate = true
             statusDirty = false
+            lastUpdated = Date()
         },
         GateData().apply {
             name = "Gate 2"
             statusGate = false
             statusDirty = true
+            lastUpdated = Date()
         },
         GateData().apply {
             name = "Gate 3"
             statusGate = true
             statusDirty = true
+            lastUpdated = Date()
         },
         GateData().apply {
             name = "Gate 4"
             statusGate = false
             statusDirty = false
+            lastUpdated = Date()
         }
     )
 }

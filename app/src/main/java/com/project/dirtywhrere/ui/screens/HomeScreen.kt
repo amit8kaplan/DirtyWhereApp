@@ -22,10 +22,12 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
         }
     ) { innerPadding ->
         MainHomeScreen(
-            boxTitles = viewModel.boxTitles,
+            gatesData = viewModel.gatesData,
             modifier = Modifier
                 .padding(innerPadding) // Apply the inner padding to avoid overlap
-                .padding(8.dp) // Additional padding for aesthetics
+                .padding(8.dp),
+            onBoxClick = {},
+            onAddBtnClick = {}
         )
     }
 }
