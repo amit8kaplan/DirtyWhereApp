@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.project.dirtywhrere"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.project.dirtywhrere"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -50,7 +50,13 @@ android {
 }
 
 dependencies {
+    implementation(platform("androidx.compose:compose-bom:2023.09.01"))
 
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -66,4 +72,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
 }
