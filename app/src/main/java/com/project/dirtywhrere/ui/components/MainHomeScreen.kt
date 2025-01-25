@@ -2,6 +2,7 @@ package com.project.dirtywhrere.ui.components
 
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -14,11 +15,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.project.dirtywhrere.classes.GateData
-import com.project.dirtywhrere.classes.gates
+import com.project.dirtywhrere.R
 
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -27,7 +30,7 @@ fun MainHomeScreen(
     gatesData: List<GateData>,
     modifier: Modifier = Modifier,
     onBoxClick: (Int) -> Unit,
-    onAddBtnClick: () -> Unit) {
+    onAddBtnClick: (Int) -> Unit) {
     var index = 0;
     Column(
         modifier = modifier // Apply the passed modifier to respect Scaffold padding
@@ -51,18 +54,52 @@ fun MainHomeScreen(
                             .background(
                                 color = Color(0xFFBB86FC),
                                 shape = RoundedCornerShape(12.dp)
-                            )
-                            .clickable(onClick = {
-                                onBoxClick(index)
-                            }),
+                            ),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text(
-                            text = gatesData[index].name?: "No Name",
-                            color = Color.White,
-                            fontSize = 18.sp,
-                            textAlign = TextAlign.Center
-                        )
+                        Box (
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(Color.Gray)
+                                .clickable(onClick = {
+                                    onBoxClick(index)
+                                }),
+                        ){
+                            Image(
+                                painter = painterResource(if (gatesData[index].statusGate == true) R.drawable.green_light else R.drawable.policeman),
+                                contentDescription = "Image",
+                                modifier = Modifier.fillMaxSize(),
+                                contentScale = ContentScale.Crop
+                            )
+                        }
+
+                        Box(
+                            modifier = Modifier
+                                .align(Alignment.TopEnd) // Place in top-right corner
+                                .padding(8.dp)
+                                .size(24.dp) // Button size
+                                .background(Color.White, RoundedCornerShape(50)) // Circular button
+                                .clickable { onAddBtnClick(index) }, // Button click
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text("+", color = Color.Black, fontSize = 16.sp)
+                        }
+                        Box(
+                            modifier = Modifier
+                                .align(Alignment.BottomCenter) // Place at the bottom
+                                .fillMaxWidth()
+                                .background(Color(0xCC000000)) // Semi-transparent background
+                                .padding(4.dp)
+                                .clickable { onBoxClick(index) } // Same click as photo
+                        ) {
+                            Text(
+                                text = "Last update: 01/25/2025", // Example data
+                                color = Color.White,
+                                fontSize = 12.sp,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
                     }
                     index++
                 }
