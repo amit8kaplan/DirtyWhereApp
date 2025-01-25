@@ -26,7 +26,8 @@ fun AddScreen(id: String?, viewModel: AddViewModel = viewModel()) {
                 title = "Add Report for Gate: $id"
             )
         }
-    ) { paddingValues -> MainAddScreen(add = viewModel.addData, paddingValues = paddingValues)
+    ) { paddingValues ->
+        MainAddScreen(viewModel = viewModel, paddingValues = paddingValues)
     }
 }
 
