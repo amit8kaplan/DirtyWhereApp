@@ -5,8 +5,9 @@ import androidx.lifecycle.ViewModel
 import com.project.dirtywhrere.classes.GateData
 
 class HomeViewModel : ViewModel() {
-    // List of box data (you can replace this with dynamic data later)
-    var gatesData = mutableStateListOf(
+    private val _gatesData = mutableStateListOf<GateData>()
+    val gatesData: List<GateData> = _gatesData
+    var gatesDatatemp = mutableStateListOf(
         GateData().apply {
             name = "Gate 1"
             statusGate = true
@@ -28,4 +29,8 @@ class HomeViewModel : ViewModel() {
             statusDirty = false
         }
     )
+    init {
+        _gatesData.addAll(gatesDatatemp)
+    }
+
 }

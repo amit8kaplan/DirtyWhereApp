@@ -62,14 +62,21 @@ fun MainHomeScreen(
                         Box (
                             modifier = Modifier
                                 .fillMaxSize()
-                                .background(Color.Gray)
+                                .background(
+                                    if (gatesData[index].statusDirty == true)
+                                        Color(0xFF83E26E)
+                                    else if (gatesData[index].statusDirty == false)
+                                        Color(0xFFE26E6F)
+                                    else
+                                        Color(0xFFCECECE)
+                                )
                                 .clickable(onClick = {
                                     onBoxClick(index)
                                 }),
                         ){
                             Image(
                                 painter = painterResource(
-                                    id = if (gatesData[index].statusGate == true) R.drawable.green_light else R.drawable.policeman
+                                    id = if (gatesData[index].statusDirty == true) R.drawable.green_light else R.drawable.policeman
                                 ),
                                 contentDescription = "none",
                                 modifier = Modifier.fillMaxSize(),
@@ -81,7 +88,7 @@ fun MainHomeScreen(
                             modifier = Modifier
                                 .align(Alignment.TopEnd) // Place in top-right corner
                                 .padding(8.dp)
-                                .size(24.dp) // Button size
+                                .size(40.dp) // Button size
                                 .background(Color.White, RoundedCornerShape(50)) // Circular button
                                 .clickable { onAddBtnClick(index) }, // Button click
                             contentAlignment = Alignment.Center
